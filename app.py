@@ -12,7 +12,7 @@ class InputForm(Form):
     s_lower = FloatField(validators=[validators.InputRequired()])
 
 # View
-@app.route('/5headmath', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     form = InputForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -27,4 +27,4 @@ def index():
         return render_template("view_input.html", form=form)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(debug=True)
