@@ -1,13 +1,54 @@
+<!DOCTYPE html>
+<html>
 <form method=post action="">
   <h3 style="color:Tomato;">This app does very complex math operations. Proceed with caution.</h3>
 
-  <p><b>Upper:</b></p>
-  <p>Arch length : {{ form.al_upper }}</p>
-  <p>Sum of incisor widths : {{ form.s_upper }}</p>
-
   <p><b>Lower:</b></p>
-  <p>Arch length : {{ form.al_lower }}</p>
-  <p>Sum of incisor widths : {{ form.s_lower }}</p>
+  {{ form.al_lower.label }}
+  {{ form.al_lower }}
+  {% if form.al_lower.errors %}
+  <ul class="errors">
+    {% for error in form.al_lower.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <br>
+  <br>
+  {{ form.s_lower.label }}
+  {{ form.s_lower }}
+  {% if form.s_lower.errors %}
+  <ul class="errors">
+    {% for error in form.s_lower.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <p><b>Upper:</b></p>
+  {{ form.al_upper.label }}
+  {{ form.al_upper }}
+  {% if form.al_upper.errors %}
+  <ul class="errors">
+    {% for error in form.al_upper.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <br>
+  <br>
+  {{ form.s_upper.label }}
+  {{ form.s_upper }}
+  {% if form.s_upper.errors %}
+  <ul class="errors">
+    {% for error in form.s_upper.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  
+  <br>
+  <br>
   
   <input type=submit value=Submit!>
 </form>
+</html>

@@ -3,13 +3,14 @@ from wtforms import Form, FloatField, validators
 import compute
 
 app = Flask(__name__)
+sumMessage = "Sum should always be between 19.5 and 29."
 
 # Model
 class InputForm(Form):
-    al_upper = FloatField(validators=[validators.InputRequired()])
-    s_upper = FloatField(validators=[validators.InputRequired()])
-    al_lower = FloatField(validators=[validators.InputRequired()])
-    s_lower = FloatField(validators=[validators.InputRequired()])
+    al_upper = FloatField(label="Arch length :", validators=[validators.InputRequired()])
+    s_upper = FloatField(label="Sum of incisor widths :", validators=[validators.InputRequired(), validators.NumberRange(min=19.5, max=29, message=sumMessage)])
+    al_lower = FloatField(label="Arch length :", validators=[validators.InputRequired()])
+    s_lower = FloatField(label="Sum of incisor widths :", validators=[validators.InputRequired(), validators.NumberRange(min=19.5, max=29, message=sumMessage)])
 
 # View
 @app.route('/', methods=['GET', 'POST'])
