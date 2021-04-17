@@ -14,7 +14,6 @@ def switch(s):
         format(s, '.2f')
     else:
         s = round(s, 2)
-    print(s)
     num = float(str(s).split('.')[0])
     dec = float(str(s).split('.')[1])
     if 0 <= dec < 25:
