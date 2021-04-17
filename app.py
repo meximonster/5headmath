@@ -24,7 +24,7 @@ def index():
         slr = compute.switch(s_l)
         xl = compute.compute_lower(al_l,s_l,slr)
         xu = compute.compute_upper(al_u, s_u, s_l,slr)
-        return render_template("view_output.html", form=form, xu=xu, xl=xl, slr=slr)
+        return render_template("view_output.html", form=form, xu=xu, xl=xl, slr=slr, s_l=s_l)
     else:
         return render_template("view_input.html", form=form)
 
