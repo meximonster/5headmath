@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
-<form method=post action="">
-  <h3 style="color:Tomato;">This app does very complex math operations. Proceed with caution.</h3>
+<head>
+  <style>
+    .button {
+      background-color: #5f184a; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 26px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 3px 1px;
+      cursor: pointer;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+    }
 
-  <p><b>Lower:</b></p>
-  {{ form.al_lower.label }}
-  {{ form.al_lower }}
+    .button2:hover {
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+    </style>
+
+    <style>
+      .p1 {
+         font-family: Verdana, sans-serif;
+}
+    </style>
+</head>
+<form method=post action="">
+  <h1 style="color:Tomato;"><i>Moyer's prediction tool</i></h1>
+
+  <p class="p1"><b><u><i>Lower:</i></u></b></p>
+  <p class="p1">{{ form.al_lower.label }}
+  {{ form.al_lower }}</p>
   {% if form.al_lower.errors %}
   <ul class="errors">
     {% for error in form.al_lower.errors %}
@@ -13,10 +41,8 @@
     {% endfor %}
   </ul>
   {% endif %}
-  <br>
-  <br>
-  {{ form.s_lower.label }}
-  {{ form.s_lower }}
+  <p class="p1">{{ form.s_lower.label }}
+  {{ form.s_lower }}</p>
   {% if form.s_lower.errors %}
   <ul class="errors">
     {% for error in form.s_lower.errors %}
@@ -24,9 +50,9 @@
     {% endfor %}
   </ul>
   {% endif %}
-  <p><b>Upper:</b></p>
-  {{ form.al_upper.label }}
-  {{ form.al_upper }}
+  <p class="p1"><b><u><i>Upper:</i></u></b></p>
+  <p class="p1">{{ form.al_upper.label }}
+  {{ form.al_upper }}</p>
   {% if form.al_upper.errors %}
   <ul class="errors">
     {% for error in form.al_upper.errors %}
@@ -34,10 +60,8 @@
     {% endfor %}
   </ul>
   {% endif %}
-  <br>
-  <br>
-  {{ form.s_upper.label }}
-  {{ form.s_upper }}
+  <p class="p1">{{ form.s_upper.label }}
+  {{ form.s_upper }}</p>
   {% if form.s_upper.errors %}
   <ul class="errors">
     {% for error in form.s_upper.errors %}
@@ -45,10 +69,7 @@
     {% endfor %}
   </ul>
   {% endif %}
-  
-  <br>
-  <br>
-  
-  <input type=submit value=Submit!>
+
+  <button class="button button2">Submit !</button>
 </form>
 </html>
