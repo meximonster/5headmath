@@ -1,12 +1,10 @@
 import constants
 import math
 
-def compute_upper(ar,su,sl):
-    slr = switch(sl)
+def compute_upper(ar,su,sl,slr):
     return round(ar - su - 2*constants.Uupper[slr], 1)
 
-def compute_lower(ar,sl):
-    slr = switch(sl)
+def compute_lower(ar,sl,slr):
     return round(ar - sl - 2*constants.Ulower[slr], 1)
 
 def switch(s):

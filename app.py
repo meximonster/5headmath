@@ -17,13 +17,14 @@ class InputForm(Form):
 def index():
     form = InputForm(request.form)
     if request.method == 'POST' and form.validate():
-        al_u = form.al_upper.data
-        s_u = form.s_upper.data
         al_l = form.al_lower.data
         s_l = form.s_lower.data
-        xu = compute.compute_upper(al_u, s_u, s_l)
-        xl = compute.compute_lower(al_l,s_l)
-        return render_template("view_output.html", form=form, xu=xu, xl=xl)
+        al_u = form.al_upper.data
+        s_u = form.s_upper.data
+        slr = compute.switch(s_l)
+        xl = compute.compute_lower(al_l,s_l,slr)
+        xu = compute.compute_upper(al_u, s_u, s_l,slr)
+        return render_template("view_output.html", form=form, xu=xu, xl=xl, slr=slr)
     else:
         return render_template("view_input.html", form=form)
 
