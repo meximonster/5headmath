@@ -9,7 +9,7 @@ def compute_lower(ar,sl,slr):
 
 def switch(s):
     if len(str(s).split('.')[1]) <= 2:
-        format(s, '.2f')
+        s = format(s, '.2f')
     else:
         s = round(s, 2)
     num = float(str(s).split('.')[0])
