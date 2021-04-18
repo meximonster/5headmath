@@ -2,6 +2,7 @@
 <html>
 <head>
   <style>
+    @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     .button {
       background-color: #5f184a; /* Green */
       border: none;
@@ -26,6 +27,25 @@
       .p1 {
          font-family: Verdana, sans-serif;
 }
+
+    .error {
+      margin: 10px 0px;
+      padding:12px;
+      color: #D8000C;
+      background-color: #FFD2D2;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-family: Verdana, sans-serif;
+}
+
+    .error:before{
+   font-family: FontAwesome;
+   content: '\f057';
+   font-size: 20px;
+   color: #D8000C;
+}
+
     </style>
 </head>
 <form method=post action="">
@@ -37,7 +57,9 @@
   {% if form.al_lower.errors %}
   <ul class="errors">
     {% for error in form.al_lower.errors %}
-    <li>{{ error }}</li>
+    <li><p class="error">
+      {{ error }}
+    </p></li>
     {% endfor %}
   </ul>
   {% endif %}
@@ -46,7 +68,9 @@
   {% if form.s_lower.errors %}
   <ul class="errors">
     {% for error in form.s_lower.errors %}
-    <li>{{ error }}</li>
+    <li><p class="error">
+      {{ error }}
+    </p></li>
     {% endfor %}
   </ul>
   {% endif %}
@@ -56,7 +80,9 @@
   {% if form.al_upper.errors %}
   <ul class="errors">
     {% for error in form.al_upper.errors %}
-    <li>{{ error }}</li>
+    <li><p class="error">
+      {{ error }}
+    </p></li>
     {% endfor %}
   </ul>
   {% endif %}
@@ -65,7 +91,9 @@
   {% if form.s_upper.errors %}
   <ul class="errors">
     {% for error in form.s_upper.errors %}
-    <li>{{ error }}</li>
+    <li><p class="error">
+      {{ error }}
+    </p></li>
     {% endfor %}
   </ul>
   {% endif %}
