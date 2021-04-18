@@ -11,6 +11,7 @@
       var mins = today.getMinutes();
       var s = today.getSeconds();
       m = checkTime(m);
+      mins = checkTime(mins);
       s = checkTime(s);
       document.getElementById('datetime').innerHTML =
       y + "-" + m + "-" + d + " " + h + ":" + mins + ":" + s;
