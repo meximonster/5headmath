@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script>
+    function startTime() {
+      var today = new Date();
+      var y = today.getFullYear();
+      var m = today.getMonth() + 1;
+      var d = today.getDate();
+      var h = today.getHours();
+      var mins = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('datetime').innerHTML =
+      y + "-" + m + "-" + d + " " + h + ":" + mins + ":" + s;
+      var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
+    </script>
   <style>
     @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     .button {
@@ -48,56 +68,61 @@
 
     </style>
 </head>
-<form method=post action="">
-  <h1 style="color:Tomato;">Moyer's prediction tool</h1>
+<body onload="startTime()">
+  <form method=post action="">
+    <h1 style="color:Tomato;">Moyer's prediction tool</h1>
 
-  <p class="p1"><b><u><i>Lower:</i></u></b></p>
-  <p class="p1">{{ form.al_lower.label }}
-  {{ form.al_lower }}</p>
-  {% if form.al_lower.errors %}
-  <ul class="errors">
-    {% for error in form.al_lower.errors %}
-    <li><p class="error">
-      {{ error }}
-    </p></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  <p class="p1">{{ form.s_lower.label }}
-  {{ form.s_lower }}</p>
-  {% if form.s_lower.errors %}
-  <ul class="errors">
-    {% for error in form.s_lower.errors %}
-    <li><p class="error">
-      {{ error }}
-    </p></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  <p class="p1"><b><u><i>Upper:</i></u></b></p>
-  <p class="p1">{{ form.al_upper.label }}
-  {{ form.al_upper }}</p>
-  {% if form.al_upper.errors %}
-  <ul class="errors">
-    {% for error in form.al_upper.errors %}
-    <li><p class="error">
-      {{ error }}
-    </p></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  <p class="p1">{{ form.s_upper.label }}
-  {{ form.s_upper }}</p>
-  {% if form.s_upper.errors %}
-  <ul class="errors">
-    {% for error in form.s_upper.errors %}
-    <li><p class="error">
-      {{ error }}
-    </p></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+    <p class="p1"><b><u><i>Lower:</i></u></b></p>
+    <p class="p1">{{ form.al_lower.label }}
+    {{ form.al_lower }}</p>
+    {% if form.al_lower.errors %}
+    <ul class="errors">
+      {% for error in form.al_lower.errors %}
+      <li><p class="error">
+        {{ error }}
+      </p></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="p1">{{ form.s_lower.label }}
+    {{ form.s_lower }}</p>
+    {% if form.s_lower.errors %}
+    <ul class="errors">
+      {% for error in form.s_lower.errors %}
+      <li><p class="error">
+        {{ error }}
+      </p></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="p1"><b><u><i>Upper:</i></u></b></p>
+    <p class="p1">{{ form.al_upper.label }}
+    {{ form.al_upper }}</p>
+    {% if form.al_upper.errors %}
+    <ul class="errors">
+      {% for error in form.al_upper.errors %}
+      <li><p class="error">
+        {{ error }}
+      </p></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="p1">{{ form.s_upper.label }}
+    {{ form.s_upper }}</p>
+    {% if form.s_upper.errors %}
+    <ul class="errors">
+      {% for error in form.s_upper.errors %}
+      <li><p class="error">
+        {{ error }}
+      </p></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
 
-  <button class="button button2">Submit !</button>
-</form>
+    <button class="button button2">Submit !</button>
+  </form>
+  <br>
+  <hr>
+  <div id="datetime"></div>
+</body>
 </html>
