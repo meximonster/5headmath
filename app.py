@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash
 from wtforms import Form, FloatField, validators
 import compute
+import os
 
 app = Flask(__name__)
 sumMessage = "Sum should always be between 19.5 and 29."
@@ -40,6 +41,6 @@ def index():
         return render_template("view_input.html", form=form)
 
 if __name__ == '__main__':
-    app.secret_key = 'secret'
+    app.secret_key = os.urandom(24)
     app.config['SESSION_TYPE'] = 'filesystem'
     app.run(port=8080, debug=True)
