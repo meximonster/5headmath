@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from wtforms import Form, FloatField, validators
 import compute
 
@@ -12,32 +12,58 @@ class InputForm(Form):
     al_upper = FloatField(label="Arch length :", validators=[validators.Optional()])
     s_upper = FloatField(label="Sum of incisor widths :", validators=[validators.Optional(), validators.NumberRange(min=19.5, max=29, message=sumMessage)])
 
-    def validate(self, al_lower, al_upper):
-        self.al_lower.errors = []
-        self.al_upper.errors = []
-        if self.al_lower.data == 25 and self.al_upper.data == 25:
-            self.al_lower.errors.append("omg")
-            self.al_upper.errors.append("lol")
-            return False
-        else:
-            return True
+    #def validate(self, al_lower, al_upper, s_lower, s_upper):
+    #    self.al_lower.errors = []
+    #    self.s_lower.errors = []
+    #    self.al_upper.errors = []
+    #    self.s_upper.errors = []
+    #    if self.s_lower.data is None:
+    #        self.s_lower.errors.append("This field is mandatory")
+    #        return False
+    #    if self.al_lower.data is None:
+    #        if self.al_upper.data is None or self.s_upper.data is None:
+    #            pass
 
+def check(al_l, al_u, s_u):
+    if al_l is None:
+        if al_u is None or s_u is None:
+            res = "nothing"
+        else:
+            res = "upper"
+    elif al_u is None or s_u is None:
+        res = "lower"
+    else:
+        res = "both"
+    return res
 
 # View
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = InputForm(request.form)
-    if request.method == 'POST' and form.validate(form.al_lower, form.al_upper):
+    if request.method == 'POST' and form.validate():
         al_l = form.al_lower.data
         s_l = form.s_lower.data
         al_u = form.al_upper.data
         s_u = form.s_upper.data
+        res = check(al_l,al_u,s_u)
         slr = compute.switch(s_l)
-        xl = compute.compute_lower(al_l,s_l,slr)
-        xu = compute.compute_upper(al_u, s_u, s_l,slr)
-        return render_template("view_output.html", form=form, xu=xu, xl=xl, slr=slr, s_l=s_l)
+        if res == "lower":
+            xl = compute.compute_lower(al_l,s_l,slr)
+            return render_template("view_output_lower.html", form=form, xl=xl, slr=slr, s_l=s_l)
+        elif res == "upper":
+            xu = compute.compute_upper(al_u, s_u, s_l,slr)
+            return render_template("view_output_upper.html", form=form, xu=xu, slr=slr, s_l=s_l)
+        elif res == "both":
+            xl = compute.compute_lower(al_l,s_l,slr)
+            xu = compute.compute_upper(al_u, s_u, s_l,slr)
+            return render_template("view_output.html", form=form, xu=xu, xl=xl, slr=slr, s_l=s_l)
+        else:
+            flash("Not enough data to perform operations.", "error")
+            return render_template("view_input.html", form=form)
     else:
         return render_template("view_input.html", form=form)
 
 if __name__ == '__main__':
+    app.secret_key = 'secret'
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(port=8080, debug=True)

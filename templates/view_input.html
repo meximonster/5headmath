@@ -71,7 +71,7 @@
 </head>
 <body onload="startTime()">
   <form method=post action="">
-    <h1 style="color:Tomato;">Moyer's prediction tool</h1>
+    <h1 style="color:rgb(49, 108, 197);">Moyer's prediction tool</h1>
 
     <p class="p1"><b><u><i>Lower:</i></u></b></p>
     <p class="p1">{{ form.al_lower.label }}
@@ -125,5 +125,17 @@
   <br>
   <hr>
   <div id="datetime"></div>
+
+  <p class="p1"><h2 style="color: Red">
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+  {% endwith %}
+  </h2>
+  </p>
+
 </body>
 </html>
