@@ -12,30 +12,6 @@ class InputForm(Form):
     al_upper = FloatField(label="Arch length :", validators=[validators.Optional()])
     s_upper = FloatField(label="Sum of incisor widths :", validators=[validators.Optional(), validators.NumberRange(min=19.5, max=29, message=sumMessage)])
 
-    #def validate(self, al_lower, al_upper, s_lower, s_upper):
-    #    self.al_lower.errors = []
-    #    self.s_lower.errors = []
-    #    self.al_upper.errors = []
-    #    self.s_upper.errors = []
-    #    if self.s_lower.data is None:
-    #        self.s_lower.errors.append("This field is mandatory")
-    #        return False
-    #    if self.al_lower.data is None:
-    #        if self.al_upper.data is None or self.s_upper.data is None:
-    #            pass
-
-def check(al_l, al_u, s_u):
-    if al_l is None:
-        if al_u is None or s_u is None:
-            res = "nothing"
-        else:
-            res = "upper"
-    elif al_u is None or s_u is None:
-        res = "lower"
-    else:
-        res = "both"
-    return res
-
 # View
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -45,7 +21,7 @@ def index():
         s_l = form.s_lower.data
         al_u = form.al_upper.data
         s_u = form.s_upper.data
-        res = check(al_l,al_u,s_u)
+        res = compute.check(al_l,al_u,s_u)
         slr = compute.switch(s_l)
         if res == "lower":
             xl = compute.compute_lower(al_l,s_l,slr)

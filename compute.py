@@ -20,3 +20,15 @@ def switch(s):
         return float(str(s).split('.')[0]+".5")
     else:
         return num+1
+
+def check(al_l, al_u, s_u):
+    if al_l is None:
+        if al_u is None or s_u is None:
+            res = "nothing"
+        else:
+            res = "upper"
+    elif al_u is None or s_u is None:
+        res = "lower"
+    else:
+        res = "both"
+    return res
