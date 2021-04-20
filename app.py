@@ -4,6 +4,8 @@ import compute
 import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
+app.config['SESSION_TYPE'] = 'filesystem'
 sumMessage = "Sum should always be between 19.5 and 29."
 
 # Model
@@ -41,6 +43,4 @@ def index():
         return render_template("view_input.html", form=form)
 
 if __name__ == '__main__':
-    app.secret_key = os.urandom(24)
-    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(port=8080, debug=True)
