@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            color: white;
+            background-image: url('https://i.imgur.com/JcLHpqM.jpg');
+            font-family: 'Verdana', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <p>The app computes Moyer's prediction based on the following formula:</p>
+    <p><i><b>ArchLength - SumOfIncisors - 2 * TheValueDerivedFromMoyersProbabilityTable(75%)</b></i></p>
+    <br>
+    <p>All inputs can have more than 1 decimal points</p>
+    <p>Not all inputs are mandatory. Computation of only one prediction is supported.</p>
+    <p>The app validates that SumOfIncisors values are always between 19.5 and 29</p>
+    <p>The SumOfLowerIncisors is rounded <b>ONLY</b> for computing the 75% value of Moyer's prediction table.</p>
+    <p>Examples of rounding:</p>
+    <ul>
+        <li>24.15 -> 24</li>
+        <li>24.32 -> 24.5</li>
+        <li>24.6 -> 24.5</li>
+        <li>24.8 -> 25</li>
+    </ul>  
+    <p><h2>Happy predicting!</h2></p>
+    <p><a href="http://stefanos-5head.herokuapp.com/">Back to home page</a></p>
+</body>
+</html>

@@ -42,5 +42,9 @@ def index():
     else:
         return render_template("view_input.html", form=form)
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 if __name__ == '__main__':
     app.run(port=8080, debug=True)
