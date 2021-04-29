@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function startTime() {
+          var today = new Date();
+          var y = today.getFullYear();
+          var m = today.getMonth() + 1;
+          var d = today.getDate();
+          var h = today.getHours();
+          var mins = today.getMinutes();
+          var s = today.getSeconds();
+          h = checkTime(h);
+          m = checkTime(m);
+          mins = checkTime(mins);
+          s = checkTime(s);
+          document.getElementById('datetime').innerHTML =
+          y + "-" + m + "-" + d + " " + h + ":" + mins + ":" + s;
+          var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+          if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+        }
+        </script>
+    <style>
+        body {
+          background-image: url('https://i.imgur.com/aEMsqTy.jpg');
+}
+        .p1 {
+          color:white;
+         font-family: Verdana, sans-serif;
+    }
+    </style>
+</head>
+<body onload="startTime()">
+    {% block content %}{% endblock %}
+    <p class="p1" style="color:white"><a href="http://stefanos-5head.herokuapp.com/">Back to home page</a></p>
+    <hr style="width:15%;text-align:left;margin-left:0">
+    <div id="datetime" style="color:white"></div>
+    <p class="p1"><small>&#169; meximonster 2021</small></p>
+</body>
+</html>
