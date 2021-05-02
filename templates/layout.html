@@ -10,6 +10,7 @@
           var h = today.getHours();
           var mins = today.getMinutes();
           var s = today.getSeconds();
+          d = checkTime(d);
           h = checkTime(h);
           m = checkTime(m);
           mins = checkTime(mins);
@@ -26,6 +27,9 @@
     <style>
         body {
           background-image: url('https://i.imgur.com/aEMsqTy.jpg');
+          background-size: cover;
+          height: 100%;
+          overflow: hidden;
 }
         .p1 {
           color:white;
