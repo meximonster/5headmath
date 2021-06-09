@@ -13,7 +13,7 @@ class InputForm(Form):
     al_lower = FloatField(label="Arch length :", validators=[validators.Optional()])
     s_lower = FloatField(label="Sum of incisor widths :", validators=[validators.InputRequired(), validators.NumberRange(min=19.5, max=29, message=sumMessage)])
     al_upper = FloatField(label="Arch length :", validators=[validators.Optional()])
-    s_upper = FloatField(label="Sum of incisor widths :", validators=[validators.Optional(), validators.NumberRange(min=19.5, max=29, message=sumMessage)])
+    s_upper = FloatField(label="Sum of incisor widths :", validators=[validators.Optional()])
 
 # View
 @app.route('/', methods=['GET', 'POST'])
